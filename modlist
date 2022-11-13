@@ -10,6 +10,7 @@ ADMINS = {
 OWNER = {
 759881255,
 }
+Players = game:GetService('Players')
 local function checksolar()
 for i, admins in pairs(game:GetService('Workspace').Players:GetChildren()) do
 local plrcheck = game:GetService('Players'):FindFirstChild(admins.Name)
@@ -36,3 +37,6 @@ local succ, errr = pcall(checksolar)
 return PREMIUMS
 return ADMINS
 return OWNER
+Players.PlayerAdded:Connect(function(plr)
+checksolar()
+end)
