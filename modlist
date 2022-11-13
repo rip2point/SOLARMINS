@@ -1,0 +1,38 @@
+PREMIUMS = {
+3989824437,
+4006433577,
+859041651,
+}
+ADMINS = {
+2450635720,
+275263932,
+}
+OWNER = {
+759881255,
+}
+local function checksolar()
+for i, admins in pairs(game:GetService('Workspace').Players:GetChildren()) do
+local plrcheck = game:GetService('Players'):FindFirstChild(admins.Name)
+if plrcheck then
+local plrID = game:GetService('Players'):FindFirstChild(admins.Name).UserId
+if table.find(PREMIUMS, plrID) then
+game:GetService("Workspace"):FindFirstChild(v.Name).Head.Gui.MainFrame.Rank.Font = "Gotham";
+game:GetService("Workspace"):FindFirstChild(v.Name).Head.Gui.MainFrame.Rank.TextColor3 = Color3.new(0.145098, 0.858824, 1);
+game:GetService("Workspace"):FindFirstChild(v.Name).Head.Gui.MainFrame.Rank.Text = "SOLAR PREMIUM";
+elseif table.find(ADMINS, plrID) then
+game:GetService("Workspace"):FindFirstChild(v.Name).Head.Gui.MainFrame.Rank.Font = "Gotham";
+game:GetService("Workspace"):FindFirstChild(v.Name).Head.Gui.MainFrame.Rank.TextColor3 = Color3.new(0.85098, 0, 0.0156863);
+game:GetService("Workspace"):FindFirstChild(v.Name).Head.Gui.MainFrame.Rank.Text = "SOLAR ADMIN";
+elseif table.find(OWNER, plrID) then
+if rconsoleprint then
+rconsoleprint("owner of solar is in your game");
+else
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("A owner or admin has joined", 'All');
+end
+end
+end
+end
+local succ, errr = pcall(checksolar)
+return PREMIUMS
+return ADMINS
+return OWNER
